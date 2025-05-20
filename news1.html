@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>서울 기습폭우에 청계천 등 하천 25곳 통제···범람 우려(종합2보)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    body {
+      padding-top: 120px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: #003366;
+      color: white;
+      padding: 20px 30px;
+      transition: padding 0.3s ease;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      z-index: 1000;
+    }
+
+    header.shrink {
+      padding: 10px 30px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: 30px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+    }
+
+    nav ul li a.keep-white {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: border-bottom 0.3s ease;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav ul li a.keep-white:hover {
+      border-bottom: 2px solid white;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: -110px;
+    }
+
+    .article-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .article-img {
+      width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .main p {
+      font-size: 30px !important;
+    }
+
+  / * 북마크 바 */
+  #leftBar {
+    position: fixed;
+    top: 140px; /* 헤더 아래로 더 확실하게 떨어뜨려줌 */
+    left: 50px; /* 살짝 우측으로 이동 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: #f9f9f9;
+    padding: 12px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    z-index: 2000; /* header보다 위에 오게 */
+    width: 50px;
+  }
+
+  .leftBar-wrapper {
+    position: relative;
+    height: auto;
+   }
+
+    #bookmarkBtn {
+        border-bottom: 1px solid #ccc; /* 위쪽 줄 삭제해서 아래만 남김 */
+        padding: 10px 0;
+        width: 38px;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        font-size: 24px; /* 좀 키움 */
+    }
+    #bookmarkBtn.active {
+        color: gold;
+    }
+    #bookmarkMsg {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    #bookmarkMsg.show {
+        opacity: 100%;
+    }
+    #fontIncrease, #fontDecrease {
+        font-weight: normal;
+        font-size: 16px;
+        width: 40px;
+        height: 38px;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0px; /* 오른쪽 이동 더 늘림 */
+    }
+    #commentBtn {
+      transform: translateX(13px);
+    }
+    #fontControls {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 50px;
+    }
+
+    #fontControls div {
+        background: none;
+        border: none;
+        padding: 0.5rem 0;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.4rem;
+        cursor: pointer;
+        user-select: none;
+        color: #333;
+    }
+
+    #fontControls div:hover {
+        color: #555;
+        background: none;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header id="header"style="position: fixed; top: 0; width: 100%; background: #003366; z-index: 9999;">
+    <div class="logo">    
+	<a href="뉴스메인페이지.html" style="text-decoration: none; color: inherit; cursor: pointer;">
+	  <h1>
+	    <img src="무제84_20250516191058.PNG" style="height:40px; vertical-align:middle; margin-right:8px" />
+	    <span style="font-style: italic; position: relative; top: -3px; font-size:30px;">냥뉴스</span>
+	  </h1>
+	</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="politics.html" class="keep-white">정치</a></li>
+        <li><a href="economy.html" class="keep-white">경제</a></li>
+        <li><a href="society.html" class="keep-white">사회</a></li>
+        <li><a href="culture.html" class="keep-white">문화</a></li>
+        <li><a href="sports.html" class="keep-white">스포츠</a></li>
+        <li><a href="entertainment.html" class="keep-white">연예</a></li>
+        <li><a href="it.html" class="keep-white">IT</a></li>
+      </ul>
+    </nav>
+    <div id="scrollBar" style="
+      height: 6px;
+      background-color: #00BFFF;
+      width: 0%;
+      transition: width 0.2s ease;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    "></div>
+  </header>
+
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrolled = (scrollTop / docHeight) * 100
+      const scrollBar = document.getElementById('scrollBar')
+      scrollBar.style.width = scrolled + '%'
+    })
+  </script>
+
+  <main id="articleContent">
+    <h1 class="article-title">서울 기습폭우에 청계천 등 하천 25곳 통제···범람 우려(종합2보)</h1>
+    <p class="article-meta">2025-05-16 21:46 | 냥뉴스</p> 
+    <hr style="border: none; border-top: 1px solid #ccc; width: 100%; margin: 16px auto;" /> <br>
+
+    <h3>배수지원 22건·시설물 안전조치 28건…호우주의보 해제로 보강근무체제</h3>
+    <img src="PYH2025051614380001301_P4-1.jpg" alt="이미지1" class="article-img" style="border-radius: 0; margin-bottom: 0.2rem;" />
+    <p style="font-size: 0.9rem; margin-left: 1.5rem; margin-top: 0.1rem;">'쏟아지는 비'</p>
+    <p style="margin-top: -3px; margin-left: 1.5rem; font-size: 0.875rem; color: #999; margin-top: 0.3rem;">
+      (서울=연합뉴스) 이진욱 기자 = 비가 내린 16일 서울 광화문광장 인근에서 시민들이 우산을 쓴 채 이동하고 있다. 2025.5.16 cityboy@yna.co.kr</p> <br>
+
+    <p>(서울=연합뉴스) 윤보람 정윤주 기자 = 16일 오후 서울에 내린 기습 폭우로 범람에 대비해 청계천과 안양천을 포함한 시내 하천 25곳의 통행이 통제됐다.</p> 
+    <br>
+    <p>오후 8시 기준으로 통제 하천은 중랑천, 안양천, 목감천, 우이천, 묵동천, 방학천, 도봉천, 구파발천, 당현천, 성북천, 정릉천, 홍제천, 향동천, 불광천, 양재천, 탄천, 세곡천, 반포천, 성내천, 감이천, 고덕천, 도림천, 청계천, 역곡천, 장지천이다.</p>
+    <br>
+    <p>서울시에 따르면 이날 집중호우로 22건의 배수 지원과 28건의 시설물 안전조치가 이뤄졌다.</p>
+    <br>
+    <p>시는 오후 4∼5시께 호우주의보 발효와 동시에 동북권, 서북권, 서남권에 '상황근무 1단계(주의)'를 발령했다가 오후 8시를 기해 주의보가 해제되자 보강근무 체제로 전환했다.</p>
+    <br>
+    <p>서울시에 따르면 이날 집중호우로 22건의 배수 지원과 28건의 시설물 안전조치가 이뤄졌다.</p>
+    <br>
+    <p>시는 오후 4∼5시께 호우주의보 발효와 동시에 동북권, 서북권, 서남권에 '상황근무 1단계(주의)'를 발령했다가 오후 8시를 기해 주의보가 해제되자 보강근무 체제로 전환했다.</p>
+    <br>
+    <p>빗물펌프장은 한때 25곳이 가동됐다가 오후 8시 현재 9곳만 가동 중이다.</p>
+    <br>
+    <p>시는 기상 상황과 하천 수위를 지속해서 모니터링해 대응할 계획이다.</p>
+    <br>
+    <img src="PYH2025051617940001300_P4.jpg" alt="이미지1" class="article-img" style="border-radius: 0; margin-bottom: 0.2rem;" />
+    <p style="font-size: 0.9rem; margin-left: 1.5rem; margin-top: 0.1rem;">출입 통제된 청계천</p>
+    <p style="margin-top: -3px; margin-left: 1.5rem; font-size: 0.875rem; color: #999; margin-top: 0.3rem;">
+      (서울=연합뉴스) 김도훈 기자 = 서울 대부분 지역에 호우주의보가 내려진 16일 서울 청계광장 인근 청계천 산책로 입구 출입이 통제되고 있다. 2025.5.16 superdoo82@yna.co.kr </p> <br>
+
+    <p>용산구와 영등포구 등은 재난문자를 통해 '저지대 및 하천 출입을 자제하고, 침수 우려가 있는 지하차도 출입을 하지 말라'고 공지했다.</p>
+    <br>
+    <p>집중 호우로 퇴근길도 정체를 빚었다.</p>
+    <br>
+    <p>서울교통정보센터 토피스(TOPIS)에 따르면 오후 6시 기준으로 서울 도심 전체 속도는 시속 8.2㎞, 서울시 전체 속도는 시속 13.9㎞였다.</p>
+    <br>
+    <p>jungle@yna.co.kr</p>
+  </main>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const header = document.getElementById('header')
+      if (window.scrollY > 50) {
+        header.classList.add('shrink')
+      } else {
+        header.classList.remove('shrink')
+      }
+    })
+  </script>
+
+    <div id="leftBar">
+        <div id="bookmarkBtn" title="북마크">★</div><br>
+        <div id="fontControls">
+            <div id="fontIncrease" title="글자크기 키우기">A+</div>
+            <div id="fontDecrease" title="글자크기 줄이기">A-</div>
+        </div>
+    </div>
+    <div id="bookmarkMsg"></div>
+
+    <script>
+        const bookmarkBtn = document.getElementById("bookmarkBtn")
+        const bookmarkMsg = document.getElementById("bookmarkMsg")
+        let bookmarked = false
+
+        bookmarkBtn.addEventListener("click", () => {
+            bookmarked = !bookmarked
+            bookmarkBtn.classList.toggle("active", bookmarked)
+            if (bookmarked) {
+                showBookmarkMsg("북마크 되었습니다!")
+            } else {
+                showBookmarkMsg("취소되었습니다")
+            }
+        })
+
+        function showBookmarkMsg(text) {
+            bookmarkMsg.textContent = text
+            bookmarkMsg.classList.add("show")
+            setTimeout(() => {
+                bookmarkMsg.classList.remove("show")
+            }, 1500)
+        }
+  </script>
+
+        <script>
+            const articleContent = document.getElementById("articleContent")
+            const fontIncrease = document.getElementById("fontIncrease")
+            const fontDecrease = document.getElementById("fontDecrease")
+
+            let currentFontSize = 16 // 기본 폰트 크기 (px)
+
+            function setFontSize(size) {
+                articleContent.style.fontSize = size + "px"
+            }
+
+            fontIncrease.addEventListener("click", () => {
+                currentFontSize += 1
+                if (currentFontSize > 24) currentFontSize = 24 // 최대 크기 제한
+                setFontSize(currentFontSize)
+            })
+
+            fontDecrease.addEventListener("click", () => {
+                currentFontSize -= 1
+                if (currentFontSize < 12) currentFontSize = 12 // 최소 크기 제한
+                setFontSize(currentFontSize)
+            })
+
+            setFontSize(currentFontSize)
+        </script>
+</body>
+</html>

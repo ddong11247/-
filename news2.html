@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SKT 3월 점유율 40%대 유지…해킹 터진 4월 2천300만명대 깨져</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    body {
+      padding-top: 120px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: #003366;
+      color: white;
+      padding: 20px 30px;
+      transition: padding 0.3s ease;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      z-index: 1000;
+    }
+
+    header.shrink {
+      padding: 10px 30px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: 30px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+    }
+
+    nav ul li a.keep-white {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: border-bottom 0.3s ease;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav ul li a.keep-white:hover {
+      border-bottom: 2px solid white;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: -110px;
+    }
+
+    .article-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .article-img {
+      width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .main p {
+      font-size: 30px !important;
+    }
+
+  / * 북마크 바 */
+  #leftBar {
+    position: fixed;
+    top: 140px; /* 헤더 아래로 더 확실하게 떨어뜨려줌 */
+    left: 50px; /* 살짝 우측으로 이동 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: #f9f9f9;
+    padding: 12px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    z-index: 2000; /* header보다 위에 오게 */
+    width: 50px;
+  }
+
+  .leftBar-wrapper {
+    position: relative;
+    height: auto;
+   }
+
+    #bookmarkBtn {
+        border-bottom: 1px solid #ccc; /* 위쪽 줄 삭제해서 아래만 남김 */
+        padding: 10px 0;
+        width: 38px;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        font-size: 24px; /* 좀 키움 */
+    }
+    #bookmarkBtn.active {
+        color: gold;
+    }
+    #bookmarkMsg {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    #bookmarkMsg.show {
+        opacity: 100%;
+    }
+    #fontIncrease, #fontDecrease {
+        font-weight: normal;
+        font-size: 16px;
+        width: 40px;
+        height: 38px;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0px; /* 오른쪽 이동 더 늘림 */
+    }
+    #commentBtn {
+      transform: translateX(13px);
+    }
+    #fontControls {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 50px;
+    }
+
+    #fontControls div {
+        background: none;
+        border: none;
+        padding: 0.5rem 0;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.4rem;
+        cursor: pointer;
+        user-select: none;
+        color: #333;
+    }
+
+    #fontControls div:hover {
+        color: #555;
+        background: none;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header id="header"style="position: fixed; top: 0; width: 100%; background: #003366; z-index: 9999;">
+    <div class="logo">    
+	<a href="뉴스메인페이지.html" style="text-decoration: none; color: inherit; cursor: pointer;">
+	  <h1>
+	    <img src="무제84_20250516191058.PNG" style="height:40px; vertical-align:middle; margin-right:8px" />
+	    <span style="font-style: italic; position: relative; top: -3px; font-size:30px;">냥뉴스</span>
+	  </h1>
+	</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="politics.html" class="keep-white">정치</a></li>
+        <li><a href="economy.html" class="keep-white">경제</a></li>
+        <li><a href="society.html" class="keep-white">사회</a></li>
+        <li><a href="culture.html" class="keep-white">문화</a></li>
+        <li><a href="sports.html" class="keep-white">스포츠</a></li>
+        <li><a href="entertainment.html" class="keep-white">연예</a></li>
+        <li><a href="it.html" class="keep-white">IT</a></li>
+      </ul>
+    </nav>
+    <div id="scrollBar" style="
+      height: 6px;
+      background-color: #00BFFF;
+      width: 0%;
+      transition: width 0.2s ease;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    "></div>
+  </header>
+
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrolled = (scrollTop / docHeight) * 100
+      const scrollBar = document.getElementById('scrollBar')
+      scrollBar.style.width = scrolled + '%'
+    })
+  </script>
+
+  <main id="articleContent">
+    <h1 class="article-title">SKT 3월 점유율 40%대 유지…해킹 터진 4월 2천300만명대 깨져</h1>
+    <p class="article-meta">2025-05-16 16:41 | 냥뉴스</p> 
+    <hr style="border: none; border-top: 1px solid #ccc; width: 100%; margin: 16px auto;" /> <br>
+
+    <h3>SKT 가입자 이탈 하루 1만명 아래로…해킹 사태 이후 누적 이탈 34만5천명</h3>
+    <img src="PYH2025051417970001300_P4.jpg" alt="이미지1" class="article-img" style="border-radius: 0; margin-bottom: 0.2rem;" />
+    <p style="font-size: 0.9rem; margin-left: 1.5rem; margin-top: 0.1rem;">SKT, 찾아가는 유심교체 서비스 내주부터 시작 전망</p>
+    <p style="margin-top: -3px; margin-left: 1.5rem; font-size: 0.875rem; color: #999; margin-top: 0.3rem;">
+      (서울=연합뉴스) 서대연 기자 = 유심정보 유출 사태를 수습 중인 SK텔레콤이 도서 벽지에 거주하는 고객을 직접 찾아가 유심을 교체하거나 재설정해주는 서비스를 내주부터 시작할 전망이다. 사진은 14일 서울 시내 한 SKT 매장에 붙은 유심정보 유출 사태 관련 안내문. 2025.5.14 dwise@yna.co.kr</p> <br>
+
+    <p>(서울=연합뉴스) 조성미 김현수 기자 = SK텔레콤[017670]이 서버 해킹 사태로 인한 가입자 무더기 이탈이 생기기 전달인 지난 3월 40%대 이동통신 시장 점유율을 유지했다.</p> 
+    <br>
+    <p>하지만, 해킹 사태가 터진 뒤인 4월 가입자 수는 2천300만명 선이 깨진 것으로 보인다.</p>
+    <br>
+    <p>16일 과학기술정보통신부의 3월 무선 통신서비스 통계 현황에 따르면 SK텔레콤 가입자 수는 2천310만4천여명으로 전체 가입자 40.4%를 차지했다.</p>
+    <br>
+    <p>3월 SKT 가입자 수는 직전 달인 2월 2천309만9천여명보다 소폭 늘었다. 다만, 모수인 전체 가입자 수도 늘어나며 점유율은 2월 40.5%에서 0.1%포인트 낮아졌다.</p>
+    <br>
+    <p>한국통신사업자연합회(KTOA)에 따르면 지난 4월 SKT에서 다른 통신사로 이동한 고객은 23만7천여명으로 집계된 바 있다.</p>
+    <br>
+    <p>과기정통부 통계의 3월 가입자 수에서 23만7천여명을 빼면 4월 SKT 가입자 수는 2천286만여명이다.</p>
+    <br>
+    <p>모수인 전체 가입자 수는 유동적이지만, 3월과 같다고 가정하면 4월 이 회사 점유율은 39.9%로 추정된다.</p>
+    <br>
+    <p>다만, 해킹 사태 이후 SK텔레콤에서 다른 통신사로 이동한 가입자가 지난 15일 처음으로 하루 1만명 아래로 감소하는 등 이탈 규모는 작아지고 있다.</p>
+    <br>
+    <p>지난달 22일 해킹 사고가 알려진 이후 SK텔레콤에서 다른 통신사로 이동한 가입자는 유심 무상 교체 서비스가 시작된 지난달 28일 3만4천132명으로 처음으로 3만명대에 진입했다.</p>
+    <br>
+    <p>해당 수치는 지난 1일 3만8천716명으로 정점을 찍은 뒤, 3일 2만2천404명, 5일 1만4천393명 등 감소 추세다.</p>
+    <br>
+    <p>해킹 사태 이후 SK텔레콤에서 다른 통신사로 이동한 가입자는 지난달 22일부터 전날까지 34만5천646명이었고, 신규 가입 등을 감안한 순감 규모는 30만2천918명으로 집계됐다.</p>
+    <br>
+    <p>hyunsu@yna.co.kr</p>
+  </main>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const header = document.getElementById('header')
+      if (window.scrollY > 50) {
+        header.classList.add('shrink')
+      } else {
+        header.classList.remove('shrink')
+      }
+    })
+  </script>
+
+    <div id="leftBar">
+        <div id="bookmarkBtn" title="북마크">★</div><br>
+        <div id="fontControls">
+            <div id="fontIncrease" title="글자크기 키우기">A+</div>
+            <div id="fontDecrease" title="글자크기 줄이기">A-</div>
+        </div>
+    </div>
+    <div id="bookmarkMsg"></div>
+
+    <script>
+        const bookmarkBtn = document.getElementById("bookmarkBtn")
+        const bookmarkMsg = document.getElementById("bookmarkMsg")
+        let bookmarked = false
+
+        bookmarkBtn.addEventListener("click", () => {
+            bookmarked = !bookmarked
+            bookmarkBtn.classList.toggle("active", bookmarked)
+            if (bookmarked) {
+                showBookmarkMsg("북마크 되었습니다!")
+            } else {
+                showBookmarkMsg("취소되었습니다")
+            }
+        })
+
+        function showBookmarkMsg(text) {
+            bookmarkMsg.textContent = text
+            bookmarkMsg.classList.add("show")
+            setTimeout(() => {
+                bookmarkMsg.classList.remove("show")
+            }, 1500)
+        }
+  </script>
+
+        <script>
+            const articleContent = document.getElementById("articleContent")
+            const fontIncrease = document.getElementById("fontIncrease")
+            const fontDecrease = document.getElementById("fontDecrease")
+
+            let currentFontSize = 16 // 기본 폰트 크기 (px)
+
+            function setFontSize(size) {
+                articleContent.style.fontSize = size + "px"
+            }
+
+            fontIncrease.addEventListener("click", () => {
+                currentFontSize += 1
+                if (currentFontSize > 24) currentFontSize = 24 // 최대 크기 제한
+                setFontSize(currentFontSize)
+            })
+
+            fontDecrease.addEventListener("click", () => {
+                currentFontSize -= 1
+                if (currentFontSize < 12) currentFontSize = 12 // 최소 크기 제한
+                setFontSize(currentFontSize)
+            })
+
+            setFontSize(currentFontSize)
+        </script>
+</body>
+</html>

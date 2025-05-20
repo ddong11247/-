@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUV, 도로 난간 뚫고 7m 높이 옹벽 아래 추락…운전자 사망</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    body {
+      padding-top: 120px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: #003366;
+      color: white;
+      padding: 20px 30px;
+      transition: padding 0.3s ease;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      z-index: 1000;
+    }
+
+    header.shrink {
+      padding: 10px 30px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: 30px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+    }
+
+    nav ul li a.keep-white {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: border-bottom 0.3s ease;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav ul li a.keep-white:hover {
+      border-bottom: 2px solid white;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: -110px;
+    }
+
+    .article-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .article-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .article-img {
+      width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .main p {
+      font-size: 30px !important;
+    }
+
+  / * 북마크 바 */
+  #leftBar {
+    position: fixed;
+    top: 140px; /* 헤더 아래로 더 확실하게 떨어뜨려줌 */
+    left: 50px; /* 살짝 우측으로 이동 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: #f9f9f9;
+    padding: 12px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    z-index: 2000; /* header보다 위에 오게 */
+    width: 50px;
+  }
+
+  .leftBar-wrapper {
+    position: relative;
+    height: auto;
+   }
+
+    #bookmarkBtn {
+        border-bottom: 1px solid #ccc; /* 위쪽 줄 삭제해서 아래만 남김 */
+        padding: 10px 0;
+        width: 38px;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        font-size: 24px; /* 좀 키움 */
+    }
+    #bookmarkBtn.active {
+        color: gold;
+    }
+    #bookmarkMsg {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    #bookmarkMsg.show {
+        opacity: 100%;
+    }
+    #fontIncrease, #fontDecrease {
+        font-weight: normal;
+        font-size: 16px;
+        width: 40px;
+        height: 38px;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0px; /* 오른쪽 이동 더 늘림 */
+    }
+    #commentBtn {
+      transform: translateX(13px);
+    }
+    #fontControls {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 50px;
+    }
+
+    #fontControls div {
+        background: none;
+        border: none;
+        padding: 0.5rem 0;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.4rem;
+        cursor: pointer;
+        user-select: none;
+        color: #333;
+    }
+
+    #fontControls div:hover {
+        color: #555;
+        background: none;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header id="header"style="position: fixed; top: 0; width: 100%; background: #003366; z-index: 9999;">
+    <div class="logo">    
+	<a href="뉴스메인페이지.html" style="text-decoration: none; color: inherit; cursor: pointer;">
+	  <h1>
+	    <img src="무제84_20250516191058.PNG" style="height:40px; vertical-align:middle; margin-right:8px" />
+	    <span style="font-style: italic; position: relative; top: -3px; font-size:30px;">냥뉴스</span>
+	  </h1>
+	</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="politics.html" class="keep-white">정치</a></li>
+        <li><a href="economy.html" class="keep-white">경제</a></li>
+        <li><a href="society.html" class="keep-white">사회</a></li>
+        <li><a href="culture.html" class="keep-white">문화</a></li>
+        <li><a href="sports.html" class="keep-white">스포츠</a></li>
+        <li><a href="entertainment.html" class="keep-white">연예</a></li>
+        <li><a href="it.html" class="keep-white">IT</a></li>
+      </ul>
+    </nav>
+    <div id="scrollBar" style="
+      height: 6px;
+      background-color: #00BFFF;
+      width: 0%;
+      transition: width 0.2s ease;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    "></div>
+  </header>
+
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrolled = (scrollTop / docHeight) * 100
+      const scrollBar = document.getElementById('scrollBar')
+      scrollBar.style.width = scrolled + '%'
+    })
+  </script>
+
+  <main id="articleContent">
+    <h1 class="article-title">SUV, 도로 난간 뚫고 7m 높이 옹벽 아래 추락…운전자 사망</h1>
+    <p class="article-meta">2025-05-16 13:51 | 냥뉴스</p> 
+    <hr style="border: none; border-top: 1px solid #ccc; width: 100%; margin: 16px auto;" /> <br>
+
+    <img src="AKR20250516085700053_03_i_P4.jpg" alt="이미지1" class="article-img" style="border-radius: 0; margin-bottom: 0.2rem;" />
+    <p style="font-size: 0.9rem; margin-left: 1.5rem; margin-top: 0.1rem;">옹벽 아래로 추락한 차량</p>
+    <p style="margin-top: -3px; margin-left: 1.5rem; font-size: 0.875rem; color: #999; margin-top: 0.3rem;">
+      [독자 김동운 씨 제공. 재판매 및 DB 금지]</p> <br>
+
+    <p>(대구=연합뉴스) 박세진 기자 = 도로를 달리던 스포츠유틸리티차(SUV)가 난간을 뚫고 7m 높이 옹벽 아래로 추락해 운전자가 숨졌다.</p> 
+    <br>
+    <p>16일 대구 동부경찰서에 따르면 전날 오전 10시 19분께 동구 방촌동 화랑로에서 주행 중이던 SUV가 7m 높이 옹벽 아래에 있는 풋살경기장으로 떨어졌다.</p>
+    <br>
+    <p>이 사고로 운전자인 40대 남성 A씨가 심정지 상태로 병원에 이송됐으나 사망 판정을 받았다.</p>
+    <br>
+    <p>경찰은 정확한 사고 경위를 조사하고 있다.</p>
+    <br>
+    <img src="AKR20250516085700053_02_i_P4.jpg" alt="이미지1" class="article-img" style="border-radius: 0; margin-bottom: 0.2rem;" />
+    <p style="font-size: 0.9rem; margin-left: 1.5rem; margin-top: 0.1rem;">차 사고로 파손된 난간</p>
+    <p style="margin-top: -3px; margin-left: 1.5rem; font-size: 0.875rem; color: #999; margin-top: 0.3rem;">
+      [독자 김동운 씨 제공. 재판매 및 DB 금지]</p> <br>
+
+    <p>psjpsj@yna.co.kr</p>
+  </main>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const header = document.getElementById('header')
+      if (window.scrollY > 50) {
+        header.classList.add('shrink')
+      } else {
+        header.classList.remove('shrink')
+      }
+    })
+  </script>
+
+    <div id="leftBar">
+        <div id="bookmarkBtn" title="북마크">★</div><br>
+        <div id="fontControls">
+            <div id="fontIncrease" title="글자크기 키우기">A+</div>
+            <div id="fontDecrease" title="글자크기 줄이기">A-</div>
+        </div>
+    </div>
+    <div id="bookmarkMsg"></div>
+
+    <script>
+        const bookmarkBtn = document.getElementById("bookmarkBtn")
+        const bookmarkMsg = document.getElementById("bookmarkMsg")
+        let bookmarked = false
+
+        bookmarkBtn.addEventListener("click", () => {
+            bookmarked = !bookmarked
+            bookmarkBtn.classList.toggle("active", bookmarked)
+            if (bookmarked) {
+                showBookmarkMsg("북마크 되었습니다!")
+            } else {
+                showBookmarkMsg("취소되었습니다")
+            }
+        })
+
+        function showBookmarkMsg(text) {
+            bookmarkMsg.textContent = text
+            bookmarkMsg.classList.add("show")
+            setTimeout(() => {
+                bookmarkMsg.classList.remove("show")
+            }, 1500)
+        }
+  </script>
+
+        <script>
+            const articleContent = document.getElementById("articleContent")
+            const fontIncrease = document.getElementById("fontIncrease")
+            const fontDecrease = document.getElementById("fontDecrease")
+
+            let currentFontSize = 16 // 기본 폰트 크기 (px)
+
+            function setFontSize(size) {
+                articleContent.style.fontSize = size + "px"
+            }
+
+            fontIncrease.addEventListener("click", () => {
+                currentFontSize += 1
+                if (currentFontSize > 24) currentFontSize = 24 // 최대 크기 제한
+                setFontSize(currentFontSize)
+            })
+
+            fontDecrease.addEventListener("click", () => {
+                currentFontSize -= 1
+                if (currentFontSize < 12) currentFontSize = 12 // 최소 크기 제한
+                setFontSize(currentFontSize)
+            })
+
+            setFontSize(currentFontSize)
+        </script>
+</body>
+</html>

@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>정치</title>
+  <style>
+        body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    
+    header h1 {
+  	margin: 0;
+  	font-size: 2.5rem;
+  	line-height: 1.2;
+    }
+
+
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 20px 0; /* 원래 높이 유지 */
+      text-align: center;
+      position: relative;
+      height: 220px; /* 원래 높이로 복원 */
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 세로 가운데 정렬 */
+      align-items: center;     /* 가로 가운데 정렬 */
+      padding: 0; /* padding 없애도 됨 */
+    }
+
+    .top-right {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 14px;
+      color: white;
+      user-select: none;
+    }
+
+    #today-date {
+      font-weight: normal; /* 볼드 해제 */
+      min-width: 130px;
+    }
+
+    .login-icon {
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: underline;
+      white-space: nowrap;
+    }
+
+    .search-container {
+      position: relative;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    #search-label {
+      cursor: pointer;
+      text-decoration: underline;
+      color: white;
+      white-space: nowrap;
+    }
+
+    #search-box {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      margin-top: 5px;
+      display: none;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      padding: 5px;
+      z-index: 1000;
+    }
+
+    #search-box input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 140px;
+      font-size: 14px;
+    }
+
+    #search-box button {
+      padding: 5px 10px;
+      margin-left: 5px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #search-box button:hover {
+      background-color: #002244;
+    }
+
+    #googleTranslateElementInit {
+  	background-color: #003366;
+  	padding: 5px 10px;
+  	border-radius: 8px;
+  	display: inline-block;
+	filter: brightness(0.9) contrast(1.2);
+    }
+
+
+
+    .lang-select {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 14px;
+      z-index: 999;
+      color: white;
+    }
+
+    .lang-select a {
+      color: white;
+      text-decoration: underline;
+      margin: 0 4px;
+      cursor: pointer;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 50px 0 0 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover {
+      color: #003366 !important;
+      text-decoration: underline;
+    }
+
+    section, .login-page {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      border-bottom: 2px solid #003366;
+      padding-bottom: 10px;
+    }
+
+    article {
+      margin-bottom: 20px;
+    }
+
+    article h3 {
+      color: #003366;
+      margin-bottom: 5px;
+    }
+
+    footer {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .login-page {
+      display: none;
+    }
+
+    .login-page h2 {
+      margin-top: 0;
+    }
+
+    .login-page input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .login-page button {
+      width: 100%;
+      padding: 10px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .login-page button:hover {
+      background-color: #002244;
+    }
+
+	/* 실시간 속보 부분 */
+	.main-news {
+  	max-width: 800px;
+	height: auto;
+  	overflow: visible;
+  	margin-top: 0px;   /* 헤더와 박스 사이 고정 간격 */
+  	min-height: 300px;
+  	margin: 0 auto;
+  	font-family: Arial, sans-serif;
+	}
+	.main-news-img {
+	  height: 400px !important;
+	  width: auto;
+	  object-fit: contain; /* or cover, depending on the effect you want */
+	}
+
+
+	.news-slider {
+  	position: relative;
+  	overflow: visible;
+  	height: auto;
+	}
+	.slide {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  opacity: 0;
+	  transition: opacity 1s ease-in-out;
+	  z-index: 0;
+	}
+	.slide.active {
+  	opacity: 1;
+	z-index: 1;
+  	position: relative;
+	}
+	.slide img {
+  	width: 100%;
+  	height: 200px;
+  	object-fit: cover;
+  	display: block;
+	}
+	.caption a {
+  	  text-decoration: none;
+  	  color: inherit;
+  	  padding: 5px;
+	}
+	.caption h3 {
+	  color: #003366;
+	  font-size: 30px;
+	  margin-bottom: 5px;
+	}
+
+	.caption p {
+	  margin: 0;
+	  font-size: 14px;
+	  color: black;
+	}
+
+	.caption p.gray {
+	  color: #999;
+	}
+	.news-slider a,
+	.news-slider a * {
+	  color: inherit;
+	}
+	ul {
+	  margin-top: 10;
+	  padding-left: 15px;
+	}
+
+	/* 많이 본 뉴스 부분 */
+	.news-container {
+	  display: flex;
+	  gap: 20px;
+	}
+
+
+	.left-news ul {
+	  list-style-type: disc !important; /* 기본 점 모양 */
+	  padding-left: 20 !important;
+	  margin-left: 0px !important; /* 왼쪽 여백 줘서 들여쓰기 */
+	  color: #333; /* 글자색 */
+	}
+
+	.left-news ul li {
+	  color: #999;
+	}
+
+
+	nav ul {
+	  list-style: none;
+	}
+
+	nav ul li a.keep-white:hover {
+	  color: white !important;
+	}
+
+	.right-news {
+	  display: flex;
+	  flex-direction: column;
+	  gap: 0px;
+	}
+
+	.news-item {
+	  display: flex;
+	  align-items: center;
+	  gap: 10px;
+	  border-bottom: 1px solid #ddd;
+	  padding-bottom: 10px;
+	  padding-top: 15px;
+	  margin-left: 25px;
+	}
+	
+
+	.rank {
+	  font-size: 24px;
+	  font-weight: bold;
+	  color: #003366;
+	  width: 20px;
+	  text-align: center;
+	  margin-top: 5px;
+	  margin-bottom: 5px;
+	}
+
+	.thumb {
+	  width: 120px;
+	  height: 80px;
+	  flex-shrink: 0; 
+	  object-fit: cover;
+	  border-radius: 0px;
+	  margin-bottom: -10px;
+	}
+
+	.text p {
+	  margin: 0;
+	  font-size: 15px;
+	  line-height: 1.4;
+	}
+
+
+	/* 마우스 가져가면 색 바뀜,밑줄 */
+	.hover-effect {
+	  text-decoration: none !important;
+	  color: inherit; /* 기존 색 유지 (gray 같은 거 쓰면 color: #999 써도 돼) */
+	  transition: color 0.3s ease, text-decoration 0.3s ease;
+	}
+
+	.hover-effect:hover {
+	  color: #999;
+	  text-decoration: underline !important;
+	}
+	/* a 태그에 밑줄 없애기 */
+	.news-slider a {
+	  text-decoration: none !important;
+	}
+
+	/* a 안의 모든 자식들도 밑줄 없애기 */
+	.news-slider a * {
+	  text-decoration: none !important;
+	}
+
+  </style>
+</head>
+
+<body>
+  <div style="background:#003366; color:#fff;">
+  	<br>
+  	<br>
+  	<br>
+  </div>
+  <div id="google_translate_element"transform: scale(0.01);"></div>
+
+  <!-- 언어 선택 -->
+  <div class="lang-select">
+    <a href="#" onclick="translatePage('en')">English</a> |
+    <a href="#" onclick="translatePage('zh-CN')">中文</a> |
+    <a href="#" onclick="translatePage('ja')">日本語</a>
+  </div>
+
+  <!-- 헤더 -->
+  <header>
+    <br><br><br>
+    <h1 onclick="showHome()" style="cursor:pointer">
+  	<img src="무제84_20250516191058.PNG" style="height:40px; vertical-align:middle; margin-right:8px" /> 
+	<span style="font-style: italic; position: relative; top: 5px;"> 냥뉴스 
+    </h1>
+
+    <div class="top-right">
+      <div id="today-date"></div>
+
+      <span class="login-icon" onclick="showLogin()">로그인</span>
+
+      <div class="search-container">
+        <label id="search-label" for="search-input">검색</label>
+        <div id="search-box">
+          <input type="text" id="search-input" placeholder="검색어를 입력하세요" />
+          <button onclick="searchNews()">확인</button>
+        </div>
+      </div>
+    </div>
+
+    <nav>
+      <style>
+  	ul li {
+    		color: white;  /* 글자색 흰색 */
+  	}
+
+  	ul li a {
+    		color: inherit;  /* li 흰색 그대로 */
+    		text-decoration: none;
+    		cursor: pointer;
+  	}
+
+    	ul li a:visited,
+    	ul li a:hover,
+    	ul li a:active,
+    	ul li a:focus {
+	      color: inherit;
+	      text-decoration: underline;
+	    }
+
+      </style>
+      <ul>
+  	<li><a href="politics.html" class="keep-white">정치</a></li>
+  	<li><a href="economy.html" class="keep-white">경제</a></li>
+  	<li><a href="society.html" class="keep-white">사회</a></li>
+  	<li><a href="culture.html" class="keep-white">문화</a></li>
+  	<li><a href="sports.html" class="keep-white">스포츠</a></li>
+  	<li><a href="entertainment.html" class="keep-white">연예</a></li>
+  	<li><a href="it.html" >IT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- 뉴스 콘텐츠 -->
+  <div id="news-content">
+    <section class="main-news">
+  	<h2 style="color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px;">실시간 속보</h2>
+
+
+      <div class="news-slider main-news">
+  	<div class="slide active">
+	    <a href="news1.html">
+	      <img src="PYH2025051918690001300_P4.jpg" alt="뉴스1 이미지" class="main-news-img"/>
+	      <div class="caption">
+	        <h3 class="hover-effect">이재명, '홈그라운드' 경기 밭갈이…D-14 수도권서 굳히기 주력</h3>
+	        <p class="gray hover-effect" style="text-decoration: none;">더불어민주당 이재명 대선 후보는 선거를 2주 앞둔 20일 자신의 정치적 홈그라운드 격인 경기도에서 표밭 갈이에 집중했다···</p>
+		  <ul class="gray">
+			  <li class="gray hover-effect">이재명, SPC삼립공장 사망사고에 "엄정수사해야…사고반복에 참담"</li>
+			  <li class="gray hover-effect">"그랜드 텐트로 확장"…민주, 중도·보수 '외연 확장' 지속</li>
+		  </ul>
+	      </div>
+	    </a>
+	  </div>
+	  <div class="slide">
+	    <a href="news2.html">
+	      <img src="PYH2025052005550001300_P4.jpg" alt="뉴스2 이미지" class="main-news-img"/>
+	      <div class="caption">
+	        <h3 class="hover-effect">김문수, 한강이남서 수도권 표심 구애…시장·쪽방촌 민생 점검</h3>
+	        <p class="gray hover-effect">국민의힘 김문수 대선 후보는 20일 핵심 승부처로 꼽히는 수도권에서 이틀째 표심 잡기 총력전을 벌였다. 상대적으로 국민의힘 지지세가 강한 서울·송파 등 강···</p>
+		  <ul class="gray">
+			  <li class="gray hover-effect">김문수 "'걸어서 10분' 문화생활권…K-콘텐츠 세액공제 신설"</li>
+			  <li class="gray hover-effect">국힘 김용태-새미래 전병헌 회동…'반명 빅텐트' 논의할 듯</li>
+		  </ul>
+	      </div>
+	    </a>
+	  </div>
+	  <div class="slide">
+	    <a href="news3.html">
+	      <img src="PYH2025051919530005400_P4.jpg" alt="뉴스3 이미지" class="main-news-img"/>
+	      <div class="caption">
+	        <h3 class="hover-effect">이준석 "김문수와 단일화, 구태로 보일 것…전혀 할 생각 없다"</h3>
+	        <p class="gray hover-effect">개혁신당 이준석 대선 후보는 20일 국민의힘 김문수 대선 후보와의 단일화 가능성에 대해 "절차나 과정 자체가 굉장히 구태처럼 보일 것이기 때문에 전혀 할 생···</p>
+		  <ul class="gray">
+			  <li class="gray hover-effect">이준석 "AI로 통학버스 안전 확보…음주운전 시동잠금장치 의무화"</li>
+			  <li class="gray hover-effect">무소속 황교안·송진호 후보, 선관위 주관 TV 토론</li>
+		  </ul>
+	      </div>
+	    </a>
+	</div>
+
+    </section>
+	<script>
+	const slides = document.querySelectorAll('.slide')
+	let currentIndex = 0
+	
+	function showSlide(index) {
+  	   slides.forEach((slide, i) => {
+    		   slide.classList.toggle('active', i === index)
+	  })
+	}
+
+	function nextSlide() {
+  	  currentIndex = (currentIndex + 1) % slides.length
+	  showSlide(currentIndex)
+	}
+
+	setInterval(nextSlide, 4000) // 6초마다 자동으로 넘어감
+	</script>
+
+    <section class="news-container" style="display: flex; gap: 20px;">
+	  <div class="left-news" style="flex: 1;">
+      	  <h2 style="color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px;">많이 본 뉴스</h2>
+	    <article style="margin: 0; padding: 0;">
+		  <img src="PYH2025052005550001300_P4.jpg" alt="뉴스 이미지" style="width: 100%; height: 350px; object-fit: cover;">
+		  <h3 class="gray hover-effect" >김문수 "이준석과 전혀 다른 게 없어…같이하는 것에 계속 노력"</h3>
+		  <ul style="list-style: disc; padding-left: 20px; margin: 0; color: #999;">
+		    <li class="gray hover-effect" >김문수, 이준석과 단일화 노력 의지 밝혀···</li>
+		    <li class="gray hover-effect" >"한동훈과도 소통 중…자유진영 통합 계속할 것"</li>
+		  </ul>
+	    </article>
+	  </div>
+
+	  <br><div class="right-news" style="flex: 1;">
+	  <article class="news-item">
+	    <img src="PYH2025052002690001300_P4.jpg" alt="뉴스 이미지1" class="thumb">
+	    <span class="rank">1</span>
+	    <div class="text">
+	      <p class="gray hover-effect" style="font-weight: bold; font-size: 15px;">민주 "국힘, 연임 단어에 적반하장 시비…내란세력 제발저리기"</p>
+	    </div>
+	  </article>
+	  <article class="news-item">
+	    <img src="PYH2025051914770001300_P4.jpg" alt="뉴스 이미지1" class="thumb">
+	    <span class="rank" style="color: #999;">2</span>
+	    <div class="text">
+	      <p class="gray hover-effect" style="font-weight: bold; font-size: 15px;">'박근혜 지지모임', 이재명 지지선언···"반성 없는 국힘 떠난다"</p>
+	    </div>
+	  </article>
+	  <article class="news-item">
+	    <img src="PYH2025051916340005400_P4.jpg" alt="뉴스 이미지1" class="thumb">
+	    <span class="rank" style="color: #999;">3</span>
+	    <div class="text">
+	      <p class="gray hover-effect" style="font-weight: bold; font-size: 15px;">김옥숙 여사, 5·18묘지 참배···'광주 영령들께 진심으로 죄송'17일 법원 영장심사</p>
+	    </div>
+	  </article>
+	  <article class="news-item">
+	    <img src="AKR20250519055700001_01_i_P4.jpg" alt="뉴스 이미지1" class="thumb">
+	    <span class="rank" style="color: #999;">4</span>
+	    <div class="text">
+	      <p class="gray hover-effect" style="font-weight: bold; font-size: 15px;">자유통일당 후보 사퇴 구주와, 김문수 지지 선언</p>
+	    </div>
+ 	   </article>
+	  <article class="news-item">
+	    <img src="PYH2025051919380001300_P4.jpg" alt="뉴스 이미지1" class="thumb">
+	    <span class="rank" style="color: #999;">5</span>
+	    <div class="text">
+	      <p class="gray hover-effect" style="font-weight: bold; font-size: 15px;">국힘 특사단 "홍준표, 尹탈당했기 때문에 김문수 지지 입장"</p>
+	    </div>
+ 	   </article>
+	  </div>
+  </section>
+
+
+  </div>
+
+  <!-- 로그인 페이지 -->
+  <div class="login-page" id="login-page">
+    <h2>로그인</h2>
+    <form onsubmit="goBack(); return false;">
+    <input type="text" placeholder="아이디를 입력해 주세요" />
+    <input type="password" placeholder="비밀번호를 입력해 주세요" />
+    <button onclick="goBack()">확인</button>
+    <form>
+  </div>
+
+  <!-- 푸터 -->
+  <footer>
+    <p>© 2025 냥뉴스. 모든 권리 보유.</p>
+    <p>문의: contact@nyangnews.com</p>
+  </footer>
+
+  <!-- 번역기 스크립트 -->
+  <div id="google_translate_element" style="opacity: 0; position: absolute;"></div>
+
+  <script>
+    // 날짜 표시 함수
+    function updateDate() {
+      const dateEl = document.getElementById('today-date')
+      const now = new Date()
+      const days = ['일', '월', '화', '수', '목', '금', '토']
+      const year = now.getFullYear()
+      const month = now.getMonth() + 1
+      const day = now.getDate()
+      const dayName = days[now.getDay()]
+      dateEl.textContent = `${year}년 ${month}월 ${day}일 (${dayName})`
+    }
+
+    // 로그인 페이지 보이기
+    function showLogin() {
+      document.getElementById('news-content').style.display = 'none'
+      document.getElementById('login-page').style.display = 'block'
+    }
+
+    // 로그인 페이지 숨기기
+    function goBack() {
+      document.getElementById('news-content').style.display = 'block'
+      document.getElementById('login-page').style.display = 'none'
+    }
+
+    // 검색 박스 보이기/숨기기
+    const searchLabel = document.getElementById('search-label')
+    const searchBox = document.getElementById('search-box')
+
+    searchLabel.addEventListener('click', () => {
+      if (searchBox.style.display === 'block') {
+        searchBox.style.display = 'none'
+      } else {
+        searchBox.style.display = 'block'
+        document.getElementById('search-input').focus()
+      }
+    })
+
+    // 검색 실행
+    function searchNews() {
+      const keyword = document.getElementById('search-input').value.trim()
+      if (!keyword) {
+        alert('검색어를 입력해 주세요')
+        return
+      }
+      const articles = document.querySelectorAll('#news-content article')
+      articles.forEach(article => {
+        const text = article.textContent.toLowerCase()
+        if (text.includes(keyword.toLowerCase())) {
+          article.style.display = ''
+        } else {
+          article.style.display = 'none'
+        }
+      })
+      searchBox.style.display = 'none'
+    }
+
+    // 검색 엔터 결과 실행
+    document.getElementById('search-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        searchNews()
+       }
+    })
+
+
+    // showHome
+	function showHome() {
+  	document.getElementById('news-content').style.display = 'block'
+  	document.getElementById('login-page').style.display = 'none'
+	}
+
+
+    // 번역 기능
+    function translatePage(lang) {
+  	const select = document.querySelector('.goog-te-combo')
+  	if (select) {
+    		select.value = lang
+    		select.dispatchEvent(new Event('change'))
+  	} else {
+	  alert("번역기 로딩 중입니다 잠시만요");
+
+
+    	  // 번역기 초기화
+    	  new google.translate.TranslateElement({
+      		pageLanguage: 'ko',
+      		includedLanguages: 'en,zh-CN,ja',
+      		layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    	  }, 'google_translate_element')
+
+
+    // 초기화가 완료될 때까지 기다렸다가 다시 시도
+    setTimeout(() => {
+      const trySelect = document.querySelector('.goog-te-combo')
+      if (trySelect) {
+        trySelect.value = lang
+        trySelect.dispatchEvent(new Event('change'))
+      }
+    }, 1500)  // 1.5초 후 다시 시도
+  }
+}
+
+
+    // 초기 실행
+    updateDate()
+  </script>
+
+ <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      { pageLanguage: 'ko' },
+      'google_translate_element'
+    )
+  }
+
+
+  // 초기화 끝나면 기본언어로 설정할 수도 있어
+    	setTimeout(() => {
+      		const select = document.querySelector('.goog-te-combo')
+      		if (select) {
+        	    select.value = 'ko'  // 기본 한국어
+        	    select.dispatchEvent(new Event('change'))
+      		}
+    	}, 500)
+      }
+
+  // 번역 실행할 때 이 함수 호출
+      function translatePage(lang) {
+  	const tryTranslate = () => {
+    		const select = document.querySelector('.goog-te-combo')
+    		if (select) {
+      		    select.value = lang
+      		    select.dispatchEvent(new Event('change'))
+    		} else {
+      		    console.log('번역 select 요소가 아직 안생김')
+      		    setTimeout(tryTranslate, 100)
+    		}
+  	    }
+  	    tryTranslate()
+	}
+ </script>
+
+ <!-- 구글 번역기 로드 -->
+ <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+ <script>
+  const links = document.querySelectorAll('nav a');
+
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      // e.preventDefault();
+
+      // 기존 active 클래스 제거
+      links.forEach(l => l.classList.remove('active'));
+
+      // 클릭한 메뉴에 active 추가
+      e.target.classList.add('active');
+
+      // 여기에 해당 메뉴 컨텐츠를 보여주는 함수 넣으면 됨
+      // 예) showContent(e.target.id)
+    });
+  });
+ </script>
+
+ <script>
+  function showHome() {
+    window.location.href = '뉴스메인페이지.html' // 메인페이지 경로로 바꿔줌
+  }
+ </script>
+
+
+
+</body>
+</html>
